@@ -1,0 +1,17 @@
+Deploying the Gaurding application by using docker container
+
+step1: install git docker on the local host (yum install git -y & yum install docker -y)
+step2: clone the repo from git ( git clone and repo url)
+Step3: Dockerfile 
+	FROM ubuntu
+	RUN apt update
+	RUN apt install apache2 -y (installing apache)
+	RUN apt install apache2-utils -y ( installing utils)
+	COPY website/ /var/www/html
+	RUN service apache2 restart
+	EXPOSE 80 ( exposing the the container with port 80)
+	CMD["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+step4: docker build -t name of image:tag . (building the docker image from the Dockerfile)
+step5: Creating the container out of the image( docker run -itd --name name of the container -p 80:80 image name)
+Step6: take the ip address of the machine and try the access it through the browser by calling the port 80
+
